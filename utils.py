@@ -4,10 +4,11 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain.chains import ConversationalRetrievalChain
-
+from openai import OpenAI as OpenAIClient
 
 
 def qa_agent(openai_api_key, memory, uploaded_file, question):
+    OpenAIClient.api_key = openai_api_key
     model = ChatOpenAI(
         model="gpt-3.5-turbo",
         openai_api_key=openai_api_key,
